@@ -1,0 +1,22 @@
+<foxtel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:noNamespaceSchemaLocation="deeplink.xsd">
+    <provider>Provider Name</provider>
+    <deeplinks published="2021-07-06T19:00:00Z" >
+        <carousel name="New Releases">
+            <deeplink id="PROVIDER_NAME_XXXXXXX" order="1">
+                <title>Example Movie</title>
+                <url type="base64">aHR0cHM6Ly9leGFtcGxlLmNvbS9tb3ZpZS90aXRsZS9zeW5vcHNpcy5odG1s</url>
+                <images>
+                    <image ratio="16:9">https://example.com/movie/title/image.jpg</image>
+                </images>
+                <classification>G</classification>
+                <category>MOVIE</category>
+                <promotional_period>
+                    <start>2021-07-06T19:00:00Z</start>
+                    <end>2021-08-06T19:00:00Z</end>
+                </promotional_period>
+                <Season>0</Season>
+                <Year>2021</Year>
+            </deeplink>
+        </carousel>
+    </deeplinks>
+</foxtel>
