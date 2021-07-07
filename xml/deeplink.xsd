@@ -1,0 +1,111 @@
+<xs:schema attributeFormDefault="unqualified" 
+           elementFormDefault="qualified" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   version="1.0" >
+  <xs:element name="foxtel">
+    <xs:complexType>
+      <xs:all>
+        <xs:element type="xs:string" name="provider" minOccurs="1" />
+        <xs:element name="deeplinks" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="carousel" maxOccurs="unbounded" minOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="deeplink" maxOccurs="unbounded" minOccurs="1">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element type="xs:string" name="title"/>
+                          <xs:element name="url">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="type" fixed="base64"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="images">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="image" minOccurs="1" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:anyURI">
+                                        <xs:attribute name="ratio">
+                                          <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                              <xs:enumeration value="2:3"/>
+                                              <xs:enumeration value="16:9"/>
+                                            </xs:restriction>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="classification">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="G"/>
+                                    <xs:enumeration value="PG"/>
+                                    <xs:enumeration value="MA"/>
+                                    <xs:enumeration value="MA15+"/>
+                                    <xs:enumeration value="R18+"/>
+                                    <xs:enumeration value="CTC"/>
+                                    <xs:enumeration value="NC"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="category">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="MOVIE"/>
+                                    <xs:enumeration value="TV_EPS"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="promotional_period">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:dateTime" name="start"/>
+                                <xs:element type="xs:dateTime" name="end"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element type="xs:nonNegativeInteger" name="Season" minOccurs="0"/>
+                          <xs:element type="xs:nonNegativeInteger" name="Year" minOccurs="0"/>
+                        </xs:all>
+                        <xs:attribute name="id" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute type="xs:nonNegativeInteger" name="order" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="name"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          <xs:attribute type="xs:dateTime" name="published" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:float">
+            <xs:minInclusive value="1.0"/>
+            <xs:maxInclusive value="1.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
